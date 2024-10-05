@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações da camiseta</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            background-color: #003366;
+            color: white;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            color: black;
+            background-color: aliceblue;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 90%;
+            flex: 1;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .titulo h1 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 20px;
+        }
+
+        .voltar-adicionar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px; /* Adiciona margem superior aos botões */
+        }
+
+        .voltar-link {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            background-color: #004080;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .voltar-link:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .fa-arrow-left {
+            margin-right: 8px;
+        }
+
+        .container h2 {
+            color: #003366;
+            margin: 10px 0px 0px 10px;
+            font-size: 20px;
+        }
+
+        .indicacao-detalhes {
+            width: 100%;
+            border-radius: 10px;
+            background-color: #ffffff;
+            padding: 7px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"] {
+            border: none;
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+
+        footer {
+            text-align: center;
+            color: #333;
+            font-size: 0.9em;
+            width: 100%;
+            padding: 0px 0; 
+        }
+
+        /* Media queries para responsividade */
+        @media (max-width: 768px) {
+            .titulo h1 {
+                font-size: 24px;
+            }
+
+            .voltar-link {
+                font-size: 16px;
+                padding: 8px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .indicacao-detalhes {
+                width: 100%;
+            }
+
+            .voltar-adicionar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <%- include('./navbarAdm.ejs', { activePage: 'infoArmarioAdm' }) %> 
+    </header>
+    <div class="titulo">
+        <h1>Informações do armário</h1>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <form id="indicacaoForm" action="/desocuparArmarioAdm/<%= armario.cod_armario %>" method="post">
+                <h2>Armário:</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="camiseta" id="camiseta" placeholder="Modelo da camiseta" value="<%= armario.nome_armario %>" readonly>
+                </div>
+
+                <h2>Nome</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="titulo" id="titulo" placeholder="Não está sendo usado" value="<%= armario.nome %>" readonly>
+                </div>
+
+                <h2>E-mail</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="email" id="email" placeholder="E-mail do destinatário" value="<%= armario.email %>" readonly>
+                </div>
+        
+                <h2>Período</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="periodo" id="periodo" placeholder="Período do destinatário" value="<%= armario.periodo %>" readonly>
+                </div>
+
+                <h2>Turma</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="turma" id="turma" placeholder="Turma do destinatário" value="<%= armario.nome_turma %>" readonly>
+                </div>
+
+                <h2>Curso</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="curso" id="curso" placeholder="Curso do destinatário" value="<%= armario.nome_curso %>" readonly>
+                </div>
+        
+                <div class="voltar-adicionar">
+                    <a href="/armarioAdm" class="voltar-link">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </a>
+                    <button type="submit" class="voltar-link">Desocupar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <%- include('./footer.ejs', { activePage: 'infoArmarioAdm' }) %>
+    </footer>
+</body>
+</html>

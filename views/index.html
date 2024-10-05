@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url=https://aapm.onrender.com">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos gerais */
+        body {
+            background: linear-gradient(90deg, #000103 0%, #013a91 100%);
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            display: block;
+            height: 100vh; /* Altura completa da viewport */
+            overflow: hidden; /* Remove barras de rolagem indesejadas */
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%; /* Garante que a navbar ocupe toda a largura */
+            background-color: #fff;
+            padding: 20px 0; /* Removido o padding lateral para evitar bordas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Mantém a navbar fixa no topo */
+            top: 0; /* Posiciona a navbar no topo da página */
+            left: 0; /* Garante que a navbar comece a partir do canto esquerdo */
+            z-index: 1000; /* Garante que a navbar fique sobre outros elementos */
+        }
+
+        .navbar img.logo {
+            height: 50px;
+        }
+
+        /* Conteúdo principal */
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 100px); /* Ajuste a altura para considerar a navbar fixa */
+            padding: 20px;
+            margin-top: 80px; /* Ajuste para o espaço da navbar */
+        }
+
+        .content img.logo {
+            max-width: 100%; /* Garante que a imagem não ultrapasse a largura do container */
+            height: auto; /* Mantém a proporção da imagem */
+        }
+
+        .texto {
+            text-align: center;
+        }
+
+        .texto h1 {
+            color: #fff;
+            font-family: Roboto, sans-serif;
+            margin-top: 20px;
+        }
+
+        .trabalho {
+            margin-top: 20px; /* Ajuste o espaço superior conforme necessário */
+        }
+
+        .trabalho img {
+            width: 160px;
+            height: 64px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #fff;
+            padding: 10px; /* Diminuído de 20px para 10px */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        .footer p {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+
+            .navbar img.logo {
+                height: 40px;
+            }
+
+            .content {
+                padding: 20px;
+                height: calc(100vh - 80px); /* Ajuste a altura para considerar a navbar fixa */
+            }
+
+            .texto h1 {
+                font-size: 1.5em;
+            }
+
+            .trabalho img {
+                width: 120px;
+                height: 48px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .navbar img.logo {
+                height: 30px;
+            }
+
+            .content {
+                padding: 10px;
+                height: calc(100vh - 60px); /* Ajuste a altura para considerar a navbar fixa */
+            }
+
+            .texto h1 {
+                font-size: 1.2em;
+            }
+
+            .trabalho img {
+                width: 100px;
+                height: 40px;
+            }
+
+            .footer {
+                padding: 5px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+    <title>Login</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="navbar">
+            <img src="/img/aapm_logo_cortada.png" alt="Logo" class="logo">
+        </div>
+    </header>
+
+    <div class="content">
+        <img src="/img/aapm_logo_branca.png" alt="Logo" class="logo">
+        <div class="texto">
+            <h1>Quase lá! Estamos colocando os toques finais... <i class="fas fa-cog fa-spin"></i></h1>
+        </div>
+
+        <p>Se você não for redirecionado, <a href="https://aapm.onrender.com">clique aqui</a>.</p>
+        <div class="trabalho">
+            <img src="/img/senai.png" alt="Logo" class="logo">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <p>&copy; 2024 TCC. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

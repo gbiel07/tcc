@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações do Armário</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        footer{
+
+
+            padding: 0%;
+            margin: auto;
+        }
+
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #003366;
+            color: white;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            color: black;
+            background-color: aliceblue;
+            border-radius: 10px;
+            max-width: 600px; /* Aumenta a largura máxima da caixa */
+            width: 90%; /* Largura responsiva */
+        }
+
+        .titulo {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .titulo h1 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch; /* Alinha os elementos para ocupar toda a largura */
+            gap: 20px;
+        }
+
+        .voltar-adicionar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center; /* Centraliza os botões */
+        }
+
+        .voltar-link {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centraliza o conteúdo */
+            background-color: #004080;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 120px; /* Largura fixa para os botões */
+            text-align: center; /* Centraliza o texto dentro do botão */
+        }
+
+        .voltar-link:hover {
+            background-color: #003366;
+            transform: scale(1.05);
+        }
+
+        .fa-arrow-left, .fa-save {
+            margin-right: 8px;
+        }
+
+        .container h2 {
+            color: #003366;
+            margin: 10px 0px 0px 10px;
+            font-size: 20px;
+        }
+
+        .indicacao-detalhes {
+            width: 100%; /* Largura responsiva */
+            border-radius: 10px;
+            background-color: #ffffff;
+            padding: 7px;
+            margin-bottom: 15px;
+            box-sizing: border-box; /* Inclui padding e border na largura total */
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            border-style: none;
+            width: 100%; /* Garante que ocupa 100% da largura da caixa */
+            padding: 10px;
+            border-radius: 5px;
+            resize: vertical;
+            box-sizing: border-box; /* Inclui padding na largura total */
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        footer {
+            text-align: center;
+            color: #333;
+            font-size: 0.9em;
+            width: 100%;
+            position: relative; /* Alterado para evitar sobreposição */
+            margin-top: 20px; /* Margem superior para evitar colagem com o conteúdo */
+        }
+
+        /* Estilos para Select2 */
+        .select2-container {
+            width: 100% !important; /* Garante que o Select2 ocupe 100% da largura */
+        }
+
+        .select2-container .select2-selection--single {
+            height: auto; /* Ajusta a altura do campo */
+        }
+
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            color: black;
+            line-height: 30px; /* Alinha verticalmente o texto */
+        }
+
+        .select2-container .select2-selection--single .select2-selection__arrow {
+            height: 100%; /* Ajusta a altura da seta */
+        }
+
+        .select2-container .select2-selection--single .select2-selection__arrow b {
+            border-color: black transparent transparent transparent;
+        }
+
+        .select2-container .select2-results__option {
+            color: black;
+        }
+
+        /* Media queries para responsividade */
+        @media (max-width: 768px) {
+            .titulo h1 {
+                font-size: 24px; /* Tamanho do título em telas pequenas */
+            }
+
+            .voltar-link {
+                font-size: 16px; /* Tamanho da fonte do botão */
+                padding: 8px; /* Ajusta o padding */
+            }
+
+            .container {
+                padding: 15px; /* Reduz o padding em telas pequenas */
+            }
+
+            .indicacao-detalhes {
+                width: 100%; /* Garante que os inputs ocupem toda a largura disponível */
+            }
+
+            .voltar-adicionar {
+                flex-direction: column; /* Alinha os botões em coluna em telas pequenas */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <%- include('./navbarAdm.ejs', { activePage: 'infoArmarioAdm' }) %> 
+    </header>
+    <div class="titulo">
+        <h1>Informações do armário</h1> 
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <form id="indicacaoForm" action="/editarArmarioAdm/<%= armario.cod_armario %>" method="post">
+                <h2>Armário:</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="camiseta" id="camiseta" placeholder="Modelo da camiseta" value="<%= armario.nome_armario %>" readonly>
+                </div>
+
+                <h2>Nome</h2>
+                <div class="indicacao-detalhes">
+                    <select name="nome" id="nome" required class="select2">
+                        <option value="" disabled selected>Selecione um usuário</option>
+                        <% usuarios.forEach((usuario) => { %>
+                            <option value="<%= usuario.cod_usuario %>"> <%= usuario.nome %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="voltar-adicionar">
+                    <a href="/armarioAdm" class="voltar-link">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </a>
+                    <button type="submit" class="voltar-link">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <%- include('./footer.ejs', { activePage: 'infoArmarioAdm' }) %>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: "Usuário que utilizará",
+                allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usuário</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css&quot;
+    integrity=" sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" &gt; <link
+        rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" &gt;>
+
+    
+        </head>
+
+    </header>
+
+<body>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <%- include('./navbarAdm.ejs', { activePage: 'cadastrarUsuarioAdm' }) %>
+        </div>
+
+        <div class="top">
+            <a href="outra-pagina.html" class="redirect-button">Informações do usuário</a>
+        </div>
+
+        <!-- Novo contêiner para ajustar o espaço à esquerda -->
+        <div class="left-margin-container">
+            <form action="/cadastrarUsuarioAdm" method="post">
+                <div class="form-container">
+                    <div class="form-column">
+                        <label for="nome">Usuário:</label>
+                        <input type="text" id="nome" name="nome">
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="cpf">CPF:</label>
+                                <input type="number" id="cpf" name="cpf">
+                            </div>
+                            <div class="form-field">
+                                <label for="celular">Telefone:</label>
+                                <input type="number" id="celular" name="celular">
+                            </div>
+                        </div>
+
+                        <label for="email">E-mail:</label>
+                        <input type="text" id="email" name="email">
+
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="cidade">Cidade:</label>
+                                <input type="text" id="cidade" name="cidade">
+                            </div>
+                            <div class="form-field">
+                                <label for="bairro">Bairro:</label>
+                                <input type="text" id="bairro" name="bairro">
+                            </div>
+                        </div>
+
+
+                        <label for="rua">Rua:</label>
+                        <input type="text" id="rua" name="rua">
+
+
+                        <label for="complemento">Complemento:</label>
+                        <input type="text" id="complemento" name="complemento">
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="numero">Número:</label>
+                                <input type="text" id="numero" name="numero">
+                            </div>
+                            <div class="form-field">
+                                <label for="cep">CEP:</label>
+                                <input type="text" id="cep" name="cep">
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div class="form-column">
+
+                        <label for="turma">Turma:</label>
+                        <select id="turma" class="form-control" name="turma" required>
+                            <% turmas.forEach((turma)=> { %>
+                                <option value="<%=turma.cod_turma %>">
+                                    <%=turma.nome_turma%>
+                                </option>
+                                <% }); %>
+                        </select>
+
+                        <label for="camiseta">Camiseta:</label>
+                        <select id="camiseta" class="form-control" name="camiseta" required>
+                            <% camisetas.forEach((camiseta)=> { %>
+                                <option value="<%=camiseta.cod_camiseta %>">
+                                    <%=camiseta.modelo_camiseta%>
+                                </option>
+                                <% }); %>
+                        </select>
+
+                        <label for="senha">Senha inicial:</label>
+                        <input type="text" id="senha" name="senha">
+
+                        <div class="form-row">
+
+                            <div class="form-field">
+                                <label for="data_inscricao">Data da inscrição:</label>
+                                <input type="date" id="data_inscricao" name="data_inscricao">
+                            </div>
+                            <div class="form-field">
+                                <label for="cargo">Cargo:</label>
+                                <select id="cargo" class="form-control" name="cargo" required>
+                                    <% cargos.forEach((cargo)=> { %>
+                                      <option value="<%=cargo.cod_cargo %>"><%=cargo.nome_cargo%></option>
+                                    <% }); %> 
+                                  </select>
+                            </div>
+                            
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="save-button">Salvar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js&quot;
+    integrity=" sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js&quot;
+    integrity=" sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js&quot;
+    integrity=" sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+        <footer>
+            <%- include('./footer.ejs', { activePage: 'cadastrarUsuarioAdm' }) %>
+          </footer>
+</body>
+</html>
+
+
+<style>
+
+html {
+    height: 100%;              /* for the page to take full window height */
+    box-sizing: border-box;    /* to have the footer displayed at the bottom of the page without scrolling */
+}
+
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #193361;
+    color: #ffffff;
+    padding: 0;
+    position: relative;
+    min-height: 100%;  
+    padding-bottom: 6rem; 
+    overflow-x: hidden;
+    }
+    
+    /* Estilo para o botão de redirecionamento */
+    .top {
+        position: absolute;
+        top: 100px;
+        left: 20px;
+    }
+
+    .redirect-button {
+        display: block;
+        margin-top: 40px;
+        margin-left: 230px;
+        padding: 10px 20px;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #193361;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+    }
+
+    .redirect-button:hover {
+        background-color: #1e3f77;
+        border-color: #1e3f77;
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Novo contêiner para ajustar o espaço à esquerda */
+    .left-margin-container {
+        margin-left: 100px;
+        /* Ajuste este valor para o espaço desejado à esquerda */
+        padding: 20px;
+        background-color: #193361;
+        border-radius: 8px;
+    }
+
+    /* Estilo para o formulário */
+    form {
+        background-color: #193361;
+        padding-right: 20px;
+        padding-left: 70px;
+        border-radius: 8px;
+    }
+
+    .form-container {
+        margin-top: 150px;
+        margin-right: 100px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .form-column {
+        width: 45%;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1px;
+    }
+
+    .form-field {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .form-field:last-child {
+        margin-right: 0;
+    }
+
+    .form-column label {
+        display: block;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .form-column input,
+    .form-column select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #193361;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #ffffff;
+        color: #000000;
+        box-sizing: border-box;
+    }
+
+    .form-column select {
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    .form-column select option {
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    /* Estilo para os botões */
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        margin: 2px 100px;
+    }
+
+    .form-actions button {
+        padding: 10px 30px;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #333333;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .form-actions .save-button {
+        background-color: #193361;
+        color: #ffffff;
+        border-color: #fafafa;
+    }
+
+    .form-actions .delete-button {
+        background-color: #193361;
+        color: #ffffff;
+        border-color: #e9e9e9;
+    }
+
+    .form-actions button:hover {
+        background-color: #ffffff;
+        color: #193361;
+    }
+</style>

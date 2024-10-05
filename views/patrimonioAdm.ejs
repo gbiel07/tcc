@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patrimônio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <%- include('./navbarAdm.ejs', { activePage: 'patrimonioAdm' }) %>
+    </header>
+
+    <div class="container">
+        <div class="titulo mb-3">
+            <h1>Patrimônios</h1>
+        </div>
+
+        <div class="botao-indicacao-pesquisa d-flex flex-column flex-sm-row justify-content-between mb-3">
+            <form action="/adicionarPatrimonioAdm" method="GET">
+                <button class="adicionar-indicacao">Cadastrar Patrimônios</button>
+            </form>
+            <form action="/pesquisarPatrimonioAdm" method="GET" class="barra-pesquisa d-flex mt-2 mt-sm-0">
+                <input type="text" id="search-input" name="pesquisa" placeholder="Pesquisar" class="form-control" />
+                <button type="submit" class="caixa-icone-pesquisa">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="list-group">
+            <% if (patrimonio.length === 0) { %>
+                <div class="sem-resultados text-center text-white">
+                    <p>Nenhum patrimônio encontrado.</p>
+                </div>
+            <% } else { %>
+                <% patrimonio.forEach((item) => { %>
+                    <div class="lista-usuario d-flex justify-content-between align-items-center">
+                        <a href="/infoPatrimonioAdm?cod_patrimonio=<%= item.cod_patrimonio %>" class="list-group-item list-group-item-action flex-grow-1">
+                            <div>
+                                <h5 class="titulo-usuario"><%= item.nome_patrimonio %></h5>
+                                <small>Status: <%= item.status %></small>
+                            </div>
+                        </a>
+                        <form action="/infoPatrimonioAdm" method="GET">
+                            <input type="hidden" name="cod_patrimonio" value="<%= item.cod_patrimonio %>">
+                            <button class="botao-ver" type="submit">Ver</button>
+                        </form>
+                    </div>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+
+    <footer style="margin-top: 20px;">
+        <%- include('./footer.ejs', { activePage: 'patrimonioAdm' }) %>
+    </footer>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-image: linear-gradient(rgba(0, 13, 56, 0.5), rgba(0, 13, 56, 0.5)), url('./img/foto_fundo.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            min-height: calc(100vh - 60px);
+            z-index: 1;
+            margin-bottom: 20px;
+        }
+
+        .titulo {
+            border-bottom: 3px solid white;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .titulo h1 {
+            margin: 0;
+            font-weight: bold;
+            font-size: 36px;
+        }
+
+        .botao-indicacao-pesquisa {
+            display: flex;
+            flex-direction: column; /* Alinha os elementos em coluna para telas menores */
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .adicionar-indicacao {
+            height: 50px;
+            font-size: 20px;
+            padding: 2px 20px;
+            background: none;
+            color: #fff;
+            border-radius: 10px;
+            border: 2px solid #ffffff;
+            transition: 0.6s;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .adicionar-indicacao:hover {
+            background-color: #2d3f52;
+            color: #fff;
+            border: 2px solid white;
+        }
+
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .barra-pesquisa {
+            display: flex;
+            align-items: center;
+        }
+
+        .barra-pesquisa input {
+            padding: 10px;
+            border-radius: 5px 0 0 5px;
+            border: none;
+            width: 100%; /* Faz o input ocupar todo o espaço disponível */
+            max-width: 200px; /* Define um tamanho máximo */
+            font-size: 20px;
+        }
+
+        .caixa-icone-pesquisa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgb(151, 151, 151);
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        .caixa-icone-pesquisa i {
+            color: #ffffff;
+        }
+
+        .caixa-icone-pesquisa:hover {
+            background-color: rgb(94, 94, 94);
+        }
+
+        .lista-usuario {
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            color: #003366;
+            padding: 10px; /* Reduzindo o padding */
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .list-group-item {
+            border: none; /* Remove a borda */
+        }
+
+        .botao-ver {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 5px 10px; /* Ajustando padding para o botão */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .botao-ver:hover {
+            background-color: #002244;
+        }
+
+        .titulo-usuario {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .sem-resultados {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        @media (max-width: 576px) {
+            .botao-indicacao-pesquisa {
+                flex-direction: column; /* Coluna em telas pequenas */
+            }
+
+            .lista-usuario {
+                flex-direction: row; /* Mantém o layout em linha em telas pequenas */
+                align-items: center; /* Alinha itens no centro verticalmente */
+            }
+
+            .botao-ver {
+                margin-left: 10px; /* Espaço entre a caixa e o botão "Ver" */
+            }
+        }
+    </style>
+</body>
+</html>

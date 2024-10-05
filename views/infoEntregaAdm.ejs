@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações da camiseta</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<!--ESTÁ NO ARQUIVO A-->
+<body>
+    <header>
+        <%- include('./navbarAdm.ejs', { activePage: 'infoEntregaAdm' }) %> 
+    </header>
+    <div class="titulo">
+        <h1>Informações da entrega</h1> <!-- Título da página -->
+    </div>
+    <div class="container">
+        <!-- Formulário para Edição e Exclusão -->
+        <div class="form-container">
+            <!-- Formulário para Edição -->
+            <form id="indicacaoForm" action="/validarEntregaAdm/<%= entrega.cod_entrega %>" method="post">
+                <h2>Camiseta</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="camiseta" id="camiseta" placeholder="Modelo da camiseta" value="<%= entrega.modelo_camiseta %>" readonly>
+                </div>
+
+                <h2>Nome</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="titulo" id="titulo" placeholder="Nome do destinatário" value="<%= entrega.nome %>" readonly>
+                </div>
+
+
+                <h2>E-mail</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="email" id="email" placeholder="E-mail do destinatário" value="<%= entrega.email %>" readonly>
+                </div>
+        
+                <h2>Período</h2>
+                <div class="entrega-detalhes">
+                    <input type="text" name="periodo" id="periodo" placeholder="Período do destinatário" value="<%= entrega.periodo %>" readonly>
+                </div>
+
+                <h2>Turma</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="turma" id="turma" placeholder="Turma do destinatário" value="<%= entrega.nome_turma %>" readonly>
+                </div>
+
+                <h2>Curso</h2>
+                <div class="indicacao-detalhes">
+                    <input type="text" name="curso" id="curso" placeholder="Curso do destinatário" value="<%= entrega.nome_curso %>" readonly>
+                </div>
+        
+                <!-- Botões de Voltar e Adicionar -->
+                <div class="voltar-adicionar">
+                    <a href="/entregaAdm" class="voltar-link">
+                        <i class="fa fa-arrow-left"></i> Voltar
+                    </a>
+                    <button type="submit" class="voltar-link">Entregue</button>
+                </div>
+            </form>
+        
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <%- include('./footer.ejs', { activePage: 'infoMaterialAdm' }) %>
+    </footer>
+</body>
+</html>
+
+
+<!-- Estilos para a página -->
+ <style>
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #003366;
+    color: white;
+}
+
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    color: black;
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+.titulo {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.titulo h1 {
+    margin: 0;
+    color: #ffffff;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os formulários à esquerda */
+    gap: 20px; /* Espaço entre os formulários */
+}
+
+.voltar-adicionar {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+    align-items: center;
+    justify-content: center;
+}
+
+.voltar-link {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    background-color: #004080;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.voltar-link:hover {
+    background-color: #003366;
+    transform: scale(1.05);
+}
+
+.voltar-link.excluir {
+    background-color: #cc0000;
+}
+
+.voltar-link.excluir:hover {
+    background-color: #990000;
+}
+
+.fa-arrow-left, .fa-save {
+    margin-right: 8px;
+}
+
+.container h2 {
+    color: #003366;
+    margin: 10px 0px 0px 10px;
+    font-size: 20px;
+}
+
+.indicacao-detalhes {
+    width: 700px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 7px;
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+textarea,
+select {
+    border-style: none;
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+textarea {
+    height: 100px;
+}
+
+footer {
+    text-align: center;
+    color: #333;
+    font-size: 0.9em;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+</style>

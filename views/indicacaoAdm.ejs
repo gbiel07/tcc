@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicações</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="./img/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos personalizados */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Garante que o body ocupe toda a altura da viewport */
+            margin: 0;
+            font-family: "Roboto", sans-serif;
+            background-image: linear-gradient(rgba(0, 13, 56, 0.5), rgba(0, 13, 56, 0.5)), url('./img/foto_fundo.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+            background-attachment: fixed;
+            overflow-x: hidden; /* Remove a barra de rolagem horizontal */
+        }
+
+        .welcome-title {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            color: white;
+            font-family: "Roboto", sans-serif;
+            font-weight: 700;
+        }
+
+        .card-container {
+            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+            gap: 20px;
+            padding: 0 10px;
+            margin-bottom: 20px;
+            flex: 1; /* Faz a card-container ocupar o espaço restante */
+        }
+
+        @media (max-width: 1380px) {
+            .card-container {
+                grid-template-columns: repeat(4, 1fr); /* 4 colunas em telas menores */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas médias */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card-container {
+                grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
+            }
+        }
+
+        .card {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza o conteúdo */
+            padding: 20px; /* Adiciona padding */
+            min-height: 300px; /* Altura mínima para todos os cards */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 50px; /* Tamanho do ícone */
+            color: #007bff; /* Cor do ícone */
+            margin-bottom: 15px; /* Espaçamento abaixo do ícone */
+        }
+
+        .card-body {
+            text-align: center;
+            flex: 1; /* Faz o card body ocupar o espaço restante */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Espaça o conteúdo uniformemente */
+        }
+
+        .card-body h5 {
+            margin-bottom: 15px; /* Ajuste a margem */
+        }
+
+        .card-body p {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        
+        footer {
+            background: #193361; /* Cor de fundo do footer */
+            color: white; /* Cor do texto do footer */
+            text-align: center; /* Centraliza o texto */
+            padding: 0px; /* Adiciona padding ao footer */
+            margin-top: auto; /* Faz o footer se posicionar no final da página */
+        }
+
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<header>
+    <%- include('./navbarAdm.ejs', { activePage: 'indicacaoAdm' }) %>
+</header>
+<body>
+    
+    <div class="container text-center">
+        <!-- Título de boas-vindas -->
+        <h1 class="welcome-title">Indicações</h1>
+
+        <!-- Cards -->
+        <div class="card-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <i class="fas fa-calendar-alt card-icon"></i>
+                <div class="card-body">
+                    <h5 class="card-title">Eventos</h5>
+                    <p class="card-text">Indicações de eventos.</p>
+                    <a href="/indicacaoEventoAdm" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+            <div class="card">
+                <i class="fas fa-book card-icon"></i>
+                <div class="card-body">
+                    <h5 class="card-title">Livros</h5>
+                    <p class="card-text">Indicações de livros.</p>
+                    <a href="/indicacaoLivroAdm" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+            <div class="card">
+                <i class="fas fa-archive card-icon"></i>
+                <div class="card-body">
+                    <h5 class="card-title">Materiais</h5>
+                    <p class="card-text">Indicações de materiais.</p>
+                    <a href="#" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>           
+            <div class="card">
+                <i class="fas fa-shop card-icon"></i>
+                <div class="card-body">
+                    <h5 class="card-title">Patrimônio</h5>
+                    <p class="card-text">Indicações de patrimônios.</p>
+                    <a href="#" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <%- include('./footer.ejs', { activePage: 'indicacaoAdm' }) %>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
